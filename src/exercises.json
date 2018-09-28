@@ -1,0 +1,16 @@
+{
+  "ex1": {
+    "currentId": 1,
+    "title": "Exercise 1",
+    "text": "The quick brown fox jumps over the lazy dog",
+    "instructions": "Highlight the word 'fox' in the text below",
+    "expected": "fox"
+  },
+  "ex2": {
+    "currentId": 2,
+    "title": "Exercise 2",
+    "text": "The quick brown fox jumps over the lazy dog",
+    "instructions": "Highlight all the vowels in the text below",
+    "expected": "e,u,i,o,o,u,o,e,e,a,o"
+  }
+}
