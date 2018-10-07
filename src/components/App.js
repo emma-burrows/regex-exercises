@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+
 import data from "../exercises.json";
 import ExerciseBox from "./ExerciseBox";
 import RegexBox from "./RegexBox";
 import Navigation from "./Navigation";
 
-class App extends Component {
+const App = () => (
+    <div>
+      <Route path='/' component={Home}/>
+    </div>
+);
+
+class Home extends Component {
   initialDefaults = {
     inputValue: '',
     status: 'default'
@@ -12,23 +20,27 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    const parseQuery = (s) => { return (s) ? s.substr(s.indexOf('=') + 1) : 1};
+    const exercise = parseQuery(this.props.location.search);
     this.state = Object.assign(this.initialDefaults, {
-      exercise: data["ex1"]
+      exercise: data[exercise]
     });
   }
 
   // Handle button events
   handleNavigationChange = (dir) => {
-    if (dir === 'next')
-      this.setState(Object.assign(this.initialDefaults, { exercise: data["ex2"] }));
-    else
-      this.setState(Object.assign(this.initialDefaults, { exercise: data["ex1"] }));
+    const currentId = this.state.exercise.id;
+    const nextId = (dir === 'next') ? currentId + 1 : currentId - 1;
+    const latestId = localStorage.getItem('latestId') || 1;
+    if (latestId < nextId) { localStorage.setItem('latestId', nextId.toString())};
+    this.props.history.push({search: `?ex=${nextId}`});
+    this.setState(Object.assign(this.initialDefaults, { exercise: data[nextId] }));
   };
 
   // Handle changes in the input box
   handleInputChange = (e) => {
     const inputValue = e.target.value;
-    const status = (inputValue === '') ? 'default' : this.state.status;
+    const status = ( inputValue === '' ) ? 'default' : this.state.status;
     this.setState({ inputValue, status });
   };
 
@@ -39,25 +51,29 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <header>
-          <h1>{ this.state.exercise.title }</h1>
-        </header>
+          <div>
+            <header>
+              <h1>{ `Exercise ${this.state.exercise.id} - ${this.state.exercise.title}` }</h1>
+            </header>
 
-        <ExerciseBox exercise={ this.state.exercise }
-                     inputValue={ this.state.inputValue }
-                     status={ this.state.status }
-                     onStatusChange={ this.handleStatusChange }/>
+            <ExerciseBox exercise={ this.state.exercise }
+                         inputValue={ this.state.inputValue }
+                         status={ this.state.status }
+                         onStatusChange={ this.handleStatusChange }/>
 
-          <RegexBox exercise={ this.state.exercise }
-                    status={ this.state.status }
-                    inputValue={ this.state.inputValue }
-                    onInputChange={ this.handleInputChange }/>
-
-          <Navigation exercise={ this.state.exercise }
+            <RegexBox exercise={ this.state.exercise }
+                      inputValue={ this.state.inputValue }
                       status={ this.state.status }
+                      onInputChange={ this.handleInputChange }
                       onNavigationChange={ this.handleNavigationChange }/>
-      </div>
+
+            <Navigation exercise={ this.state.exercise }
+                        status={ this.state.status }
+                        max={ Object.keys(data).length }
+                        onNavigationChange={ this.handleNavigationChange }/>
+
+          </div>
+
     );
   }
 }

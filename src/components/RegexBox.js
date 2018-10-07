@@ -19,6 +19,13 @@ class RegexBox extends Component {
     this.props.onInputChange(evt);
   };
 
+  onKeyDown = (event) => {
+    // 'keypress' event misbehaves on mobile so we track 'Enter' key via 'keydown' event
+    if (event.key === 'Enter') {
+      this.props.onNavigationChange('next')
+    }
+  };
+
   render() {
     const status = (this.props.status === 'danger') ? 'error' : this.props.status;
     return (
@@ -31,6 +38,7 @@ class RegexBox extends Component {
                  className="form-control"
                  autoComplete="off"
                  value={ this.state.inputValue }
+                 onKeyDown={ (e) => this.onKeyDown(e) }
                  onChange={ evt => this.updateInputValue(evt) }/>
 
           <div className="input-group-addon">/igm</div>

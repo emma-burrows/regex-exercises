@@ -1,16 +1,90 @@
 {
-  "ex1": {
-    "currentId": 1,
-    "title": "Exercise 1",
-    "text": "The quick brown fox jumps over the lazy dog",
-    "instructions": "Highlight the word 'fox' in the text below",
-    "expected": "fox"
+  "1": {
+    "id": 1,
+    "title": "Simple Matching",
+    "text": "Lorem ipsum dolor sit amet 1999, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 1947 commodo consequat.",
+    "instructions": "Highlight all instances of 'ut'.",
+    "expected": "ut,Ut,ut"
   },
-  "ex2": {
-    "currentId": 2,
-    "title": "Exercise 2",
-    "text": "The quick brown fox jumps over the lazy dog",
-    "instructions": "Highlight all the vowels in the text below",
-    "expected": "e,u,i,o,o,u,o,e,e,a,o"
+  "2": {
+    "id": 2,
+    "title": "Alternatives",
+    "text": "Lorem ipsum dolor sit amet 1999, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 1947 commodo consequat.",
+    "instructions": "Highlight all instances of 'ut' or 'sit'.",
+    "expected": "sit,ut,Ut,ut",
+    "last": true
+  },
+  "3": {
+    "id": 3,
+    "title": "Character classes",
+    "text": "Lorem ipsum dolor sit amet 1999, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 1947 commodo consequat.",
+    "instructions": "Highlight all the vowels.",
+    "expected": "o,e,i,u,o,o,i,a,e,o,e,e,u,a,i,i,i,e,i,e,o,e,i,u,o,e,o,i,i,i,u,u,a,o,e,e,o,o,e,a,a,a,i,u,a,U,e,i,a,i,i,e,i,a,u,i,o,u,e,e,i,a,i,o,u,a,o,a,o,i,i,i,u,a,i,u,i,e,e,a,o,o,o,o,e,u,a"
+  },
+  "4": {
+    "id": 4,
+    "title": "Negative character classes",
+    "text": "Lorem ipsum dolor sit amet 1999, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 1947 commodo consequat.",
+    "instructions": "Highlight all the 'u's and the following letter as long as it isn't 't'.",
+    "expected": "um,ur,us,un,ua,ui,ud,ul,ui,ua",
+    "last": true
+  },
+  "5": {
+    "id": 5,
+    "title": "Meta sequences",
+    "text": "Lorem ipsum dolor sit amet 1999, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 1947 commodo consequat.",
+    "instructions": "Highlight all the digits.",
+    "expected": "1,9,9,9,1,9,4,7"
+  },
+  "6": {
+    "id": 6,
+    "title": "More meta sequences",
+    "text": "Lorem ipsum dolor sit amet 1999, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 1947 commodo consequat.",
+    "instructions": "Highlight all punctuation (characters that are not word or whitespace characters).",
+    "expected": ",,,,.,,,.",
+    "last": true
+  },
+  "7": {
+    "id": 7,
+    "title": "Wildcards quantifiers",
+    "text": "Lorem ipsum dolor sit amet 1999, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 1947 commodo consequat.",
+    "instructions": "Highlight any character along with the 'N' that follows it.",
+    "expected": "on,in,in,un,gn,en,in,en, n,on, n,on"
+  },
+  "8": {
+    "id": 8,
+    "title": "Multiple occurrences",
+    "text": "Lorem ipsum dolor sit amet 1999, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 1947 commodo consequat.",
+    "instructions": "Highlight '9' or 'L' repeated exactly 2 or 3 times.",
+    "expected": "999,ll",
+    "last": true
+  },
+  "9": {
+    "id": 9,
+    "title": "Greedy matching",
+    "text": "Lorem ipsum dolor sit amet 1999, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 1947 commodo consequat.",
+    "instructions": "Highlight all text up to the last comma.",
+    "expected": "Lorem ipsum dolor sit amet 1999, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"
+  },
+  "10": {
+    "id": 10,
+    "title": "Non-greedy matching",
+    "text": "Lorem ipsum dolor sit amet 1999, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 1947 commodo consequat.",
+    "instructions": "Highlight the text fragments between each comma - ie: match up to the first comma encountered.",
+    "expected": "Lorem ipsum dolor sit amet 1999,, consectetur adipiscing elit,, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"
+  },
+  "11": {
+    "id": 11,
+    "title": "Back-references for doubles",
+    "text": "Lorem ipsum dolor sit amet 1999, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 1947 commodo consequat.",
+    "instructions": "Highlight all double letters (letter followed by itself).",
+    "expected": "99,ll,mm"
+  },
+  "12": {
+    "id": 12,
+    "title": "Demo - Look-ahead",
+    "text": "Lorem ipsum dolor sit amet 1999, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 1947 commodo consequat.",
+    "instructions": "Highlight every vowel that is not followed by an 'n'.",
+    "expected": "99,ll,mm"
   }
 }
