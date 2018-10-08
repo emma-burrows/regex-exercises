@@ -56,16 +56,17 @@ class Home extends Component {
               <h1>{ `Exercise ${this.state.exercise.id} - ${this.state.exercise.title}` }</h1>
             </header>
 
-            <ExerciseBox exercise={ this.state.exercise }
-                         inputValue={ this.state.inputValue }
-                         status={ this.state.status }
-                         onStatusChange={ this.handleStatusChange }/>
-
             <RegexBox exercise={ this.state.exercise }
                       inputValue={ this.state.inputValue }
                       status={ this.state.status }
                       onInputChange={ this.handleInputChange }
                       onNavigationChange={ this.handleNavigationChange }/>
+
+            <ExerciseBox exercise={ this.state.exercise }
+                         inputValue={ this.state.inputValue }
+                         status={ this.state.status }
+                         onStatusChange={ this.handleStatusChange }/>
+
 
             <Navigation exercise={ this.state.exercise }
                         status={ this.state.status }
