@@ -62,16 +62,16 @@ class Home extends Component {
                       onInputChange={ this.handleInputChange }
                       onNavigationChange={ this.handleNavigationChange }/>
 
+            <Navigation exercise={ this.state.exercise }
+                        status={ this.state.status }
+                        max={ Object.keys(data).length }
+                        onNavigationChange={ this.handleNavigationChange }/>
+
             <ExerciseBox exercise={ this.state.exercise }
                          inputValue={ this.state.inputValue }
                          status={ this.state.status }
                          onStatusChange={ this.handleStatusChange }/>
 
-
-            <Navigation exercise={ this.state.exercise }
-                        status={ this.state.status }
-                        max={ Object.keys(data).length }
-                        onNavigationChange={ this.handleNavigationChange }/>
 
           </div>
 
